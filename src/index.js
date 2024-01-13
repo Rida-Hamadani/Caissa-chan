@@ -1,7 +1,6 @@
 require("dotenv").config();
 const { Client, IntentsBitField, EmbedBuilder } = require("discord.js");
 const { validateFen } = require("chess.js");
-const ChessImageGenerator = require('chess-image-generator');
 
 const client = new Client({
   intents: [
@@ -16,14 +15,13 @@ client.on("ready", (c) => {
   client.user.setActivity("Chess");
 });
 
-client.on("messageCreate", (msg) => {
+client.on("messageCreate", async (msg) => {
   if (msg.author.bot) return;
   if (msg.content.toLowerCase().startsWith("!fen")) {
     const msgArray = msg.content.split(" ");
+    const fen = msgArray[1] + " " + msgArray[2] + " - - 0 1";
     const emb = new EmbedBuilder();
-    const { ok, error } = validateFen(
-      msgArray[1] + " " + msgArray[2] + " - - 0 1"
-    );
+    const { ok, error } = validateFen(fen);
     if (
       msgArray.length < 3 ||
       !ok ||
@@ -42,7 +40,7 @@ client.on("messageCreate", (msg) => {
         .setColor(0xbe4b57)
         .setTitle(turn)
         .setImage(
-          `https://fen2png.com/api/?fen=${msgArray[1]}%20${msgArray[2]}%20-%20-%20-&raw=true`
+          `https://chess.com/dynboard/?fen=${msgArray[1]}%20${msgArray[2]}%20-%20-%20-&board=green&piece=neo&size=3`
         );
     }
     msg.reply({ embeds: [emb] });
