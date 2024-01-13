@@ -11,6 +11,10 @@ const client = new Client({
   ],
 });
 
+client.on("ready", (c) => {
+  client.user.setActivity("Chess");
+});
+
 client.on("messageCreate", (msg) => {
   if (msg.author.bot) return;
   if (msg.content.toLowerCase().startsWith("!fen")) {

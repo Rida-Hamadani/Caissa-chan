@@ -12,7 +12,6 @@ Also it will tell you when and why a FEN is not valid.
 
 This bot was originally made for the discord server, The Chess Loft.
 
-
 # Acknowledgements
 
 This bot uses [fen2png](https://fen2png.com/) for generating images and [chess.js](https://www.npmjs.com/package/chess.js) for FEN validation.
