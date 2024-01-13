@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Client, IntentsBitField, EmbedBuilder } = require("discord.js");
 const { validateFen } = require("chess.js");
+const ChessImageGenerator = require('chess-image-generator');
 
 const client = new Client({
   intents: [
