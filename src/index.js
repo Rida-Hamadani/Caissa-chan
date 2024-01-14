@@ -16,11 +16,19 @@ client.on("ready", (c) => {
 });
 
 client.on("messageCreate", async (msg) => {
+  const emb = new EmbedBuilder();
+
   if (msg.author.bot) return;
+  if (msg.mentions.users.find(e => e.username === 'Caissa-chan' && e.bot === true)) {
+    emb
+      .setColor(0xbe4b57)
+      .setTitle("Caissa-chan Help")
+      .setDescription('`!fen`\nCreates an image of a chess diagram from its FEN record\n\nExample:\n`!fen rnbqk2r/pp2b1pp/2p1pn2/3p1p2/2PP4/1P3NP1/P3PPBP/RNBQ1RK1 b kq - 0 7`');
+    msg.reply({ embeds: [emb] });
+  }
   if (msg.content.toLowerCase().startsWith("!fen")) {
     const msgArray = msg.content.split(" ");
     const fen = msgArray[1] + " " + msgArray[2] + " - - 0 1";
-    const emb = new EmbedBuilder();
     const { ok, error } = validateFen(fen);
     if (
       msgArray.length < 3 ||
