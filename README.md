@@ -14,4 +14,4 @@ This bot was originally made for the discord server, The Chess Loft.
 
 # Acknowledgements
 
-This bot uses [fen2png](https://fen2png.com/) for generating images and [chess.js](https://www.npmjs.com/package/chess.js) for FEN validation.
+This bot uses [chessdotcom](https://chess.com/dynboard) for generating images and [chess.js](https://www.npmjs.com/package/chess.js) for FEN validation.
