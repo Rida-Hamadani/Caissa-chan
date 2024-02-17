@@ -19,7 +19,8 @@ client.on("messageCreate", async (msg) => {
   const emb = new EmbedBuilder();
 
   if (msg.author.bot) return;
-  if (msg.mentions.users.find(e => e.username === 'Caissa-chan' && e.bot === true)) {
+  if (msg.mentions.has(client.user.id)) {
+    if (msg.content.includes("@here") || msg.content.includes("@everyone") || msg.type == "REPLY") return;
     emb
       .setColor(0xbe4b57)
       .setTitle("Caissa-chan Help")
@@ -27,7 +28,7 @@ client.on("messageCreate", async (msg) => {
     msg.reply({ embeds: [emb] });
   }
   if (msg.content.toLowerCase().startsWith("!fen")) {
-    const msgArray = msg.content.split(" ");
+    const msgArray = msg.content.replace(/\n+/g, " ").replace(/\s+/g, " ").split(" ");
     const fen = msgArray[1] + " " + msgArray[2] + " - - 0 1";
     const { ok, error } = validateFen(fen);
     if (
