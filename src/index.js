@@ -49,7 +49,7 @@ client.on("messageCreate", async (msg) => {
         .setColor(0xbe4b57)
         .setTitle(turn)
         .setImage(
-          `https://chess.com/dynboard/?fen=${msgArray[1]}%20${msgArray[2]}%20-%20-%20-&board=green&piece=neo&size=3`
+          `https://chess.com/dynboard/?fen=${msgArray[1]}%20${msgArray[2]}%20-%20-%20-&board=green&piece=neo&size=3&coordinates=Outside`
         );
     }
     msg.reply({ embeds: [emb] });
