@@ -19,15 +19,14 @@ client.on("messageCreate", async (msg) => {
   const emb = new EmbedBuilder();
 
   if (msg.author.bot) return;
-  if (msg.mentions.has(client.user.id)) {
-    if (msg.content.includes("@here") || msg.content.includes("@everyone") || msg.type == "REPLY") return;
+  
+  if (msg.content.toLowerCase().startsWith("!help")) {
     emb
       .setColor(0xbe4b57)
       .setTitle("Caissa-chan Help")
       .setDescription('`!fen`\nCreates an image of a chess diagram from its FEN record\n\nExample:\n`!fen rnbqk2r/pp2b1pp/2p1pn2/3p1p2/2PP4/1P3NP1/P3PPBP/RNBQ1RK1 b kq - 0 7`');
     msg.reply({ embeds: [emb] });
-  }
-  if (msg.content.toLowerCase().startsWith("!fen")) {
+  } else if (msg.content.toLowerCase().startsWith("!fen")) {
     const msgArray = msg.content.replace(/\n+/g, " ").replace(/\s+/g, " ").split(" ");
     const fen = msgArray[1] + " " + msgArray[2] + " - - 0 1";
     const { ok, error } = validateFen(fen);
